@@ -1,0 +1,12 @@
+# ignore folders
+node_modules
+build
+
+*.js
+
+# Environment variables
+config/env.json
+config/zproxy.json
+
+# Logs
+log/*.log

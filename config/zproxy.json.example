@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "username": "username",
+  "password": "password",
+  "port": 12345,
+  "host": "hostname",
+  "bypass_domains": ["cdninstagram.com", "facebook.net", "fbcdn.net"]
+}

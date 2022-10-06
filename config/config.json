@@ -1,0 +1,25 @@
+{
+  "name": "Instagram Scraper",
+  "myip_url": "http://lumtest.com/myip.json",
+  "endpoint": "https://www.instagram.com/",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36",
+  "headless": true,
+  "devtools": false,
+  "timeout": 120000,
+  "ignore_resource_types": ["image", "stylesheet", "media", "font", "manifest"],
+  "concurrency": 10,
+  "max_tries": 3,
+  "automatically_detect_shared_data": true,
+  "internal_usernames": [
+    "explore",
+    "business",
+    "api",
+    "challenge",
+    "nametag",
+    "blog",
+    "about",
+    "legal",
+    "directory",
+    "web"
+  ]
+}
