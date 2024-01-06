@@ -1,5 +1,6 @@
 import { IIdentifier, IQueueItem } from "../../types";
-const TEST_IDS = (process.env.TEST_IDS != null) ? process.env.TEST_IDS.split(',') : false;
+const TEST_IDS =
+  process.env.TEST_IDS != null ? process.env.TEST_IDS.split(",") : false;
 
 async function scrapeIdentifier(): Promise<IQueueItem[]> {
   // Fill up queue
@@ -14,11 +15,10 @@ async function scrapeIdentifier(): Promise<IQueueItem[]> {
     }
   } else {
     // or from the API...
-
   }
 
   console.table(queue);
   return queue;
 }
 
-export { scrapeIdentifier }
+export { scrapeIdentifier };

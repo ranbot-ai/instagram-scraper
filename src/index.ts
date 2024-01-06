@@ -2,13 +2,13 @@ import { IQueueItem } from "../types";
 import { scrapeIdentifier } from "./pages/identifiers";
 import { scrapeInstagramPublicPage } from "./pages";
 
-const puppeteer = require('puppeteer-extra');
-const StealthPlugin = require('puppeteer-extra-plugin-stealth')
-puppeteer.use(StealthPlugin())
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+puppeteer.use(StealthPlugin());
 
-import { config } from './environment/config';
-import { zproxy } from './environment/zproxy';
-const fs = require('fs-extra');
+import { config } from "./environment/config";
+import { zproxy } from "./environment/zproxy";
+const fs = require("fs-extra");
 
 (async () => {
   console.log(config);
@@ -19,30 +19,34 @@ const fs = require('fs-extra');
   console.log(`>> Queue Size: ${queue.length}`);
 
   // Start browser
-  const userDataDir = `/tmp/chrome-user-data-${Math.floor(Math.random() * 100000)}`;
-  const args = [' --user-agent=' + config.user_agent,
-                ' --disable-background-timer-throttling',
-                ' --disable-backgrounding-occluded-windows',
-                ' --disable-renderer-backgrounding',
-                ' --user-data-dir=' + userDataDir,
-                ' --devtools=' + config.devtools,
-                ' --single-process'];
+  const userDataDir = `/tmp/chrome-user-data-${Math.floor(
+    Math.random() * 100000
+  )}`;
+  const args = [
+    " --user-agent=" + config.user_agent,
+    " --disable-background-timer-throttling",
+    " --disable-backgrounding-occluded-windows",
+    " --disable-renderer-backgrounding",
+    " --user-data-dir=" + userDataDir,
+    " --devtools=" + config.devtools,
+    " --single-process",
+  ];
 
   if (zproxy.enabled) {
-    args.push(' --proxy-server=' + zproxy.host + ':' + zproxy.port);
-    args.push(' --proxy-bypass-list=' + zproxy.bypass_domains.join(';'));
+    args.push(" --proxy-server=" + zproxy.host + ":" + zproxy.port);
+    args.push(" --proxy-bypass-list=" + zproxy.bypass_domains.join(";"));
   }
 
   const browser = await puppeteer.launch({
     headless: config.headless,
-    args: args
+    args: args,
   });
 
   // Start to scrape instagram identifiers queues
   if (queue.length === 0) {
     console.log(">> Scraper exiting...");
   } else {
-    await scrapeInstagramPublicPage(browser, queue)
+    await scrapeInstagramPublicPage(browser, queue);
   }
 
   // Delete user data dir
@@ -50,7 +54,10 @@ const fs = require('fs-extra');
     await fs.rmSync(userDataDir, { recursive: true, force: true });
   } catch (error) {
     if (error instanceof Error) {
-      console.error(" > Error clearing user data dir ", (error as Error).message);
+      console.error(
+        " > Error clearing user data dir ",
+        (error as Error).message
+      );
     }
   }
 })();
