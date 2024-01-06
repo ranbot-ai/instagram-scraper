@@ -1,5 +1,5 @@
 {
-  "enabled": true,
+  "enabled": false,
   "username": "username",
   "password": "password",
   "port": 12345,

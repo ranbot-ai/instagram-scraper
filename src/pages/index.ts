@@ -170,8 +170,10 @@ async function scrapeInstagramPublicPage(
       }
     });
 
-    // Authenticate Bright Data Proxy
-    await page.authenticate({ username, password });
+    if (zproxy.enabled) {
+      await page.authenticate({ username, password });
+      console.log("// Authenticate Bright Data Proxy");
+    }
 
     try {
       await page.goto(url, { waitUntil: "networkidle2" });
