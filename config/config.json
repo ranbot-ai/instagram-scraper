@@ -8,7 +8,7 @@
   "timeout": 120000,
   "ignore_resource_types": ["image", "stylesheet", "media", "font", "manifest"],
   "concurrency": 10,
-  "max_tries": 3,
+  "max_tries": 2,
   "automatically_detect_shared_data": true,
   "internal_usernames": [
     "explore",

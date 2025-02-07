@@ -155,20 +155,13 @@ async function parsePageData(page: any): Promise<any> {
       return null;
     }
   }, externalLinkSelector);
-  data.external_url_linkshimmed = externalLink;
-
-  // Extract external link
-  data.external_url =
-    externalLink &&
-    decodeURIComponent(
-      externalLink.match(/https\:\/\/l\.instagram\.com\/\?u=([^&]+)&.*/)[1]
-    );
+  data.external_url = externalLink;
 
   // Verified
   data.is_verified = await page.evaluate((selector: string) => {
     let element = document.querySelector(selector);
     if (element instanceof HTMLElement) {
-      return element.innerText == "Verified";
+      return element.innerHTML == "Verified";
     } else {
       return false;
     }
@@ -209,7 +202,7 @@ async function parsePageData(page: any): Promise<any> {
         if (elements) {
           let relatedProfiles = Array.from(elements)
             .map(function (item) {
-              let fullNameElement = item?.querySelectorAll("span > div")[0];
+              let fullNameElement = item?.querySelector("div span span");
 
               if (fullNameElement instanceof HTMLElement) {
                 return {
@@ -248,7 +241,7 @@ async function parsePageData(page: any): Promise<any> {
       const accounts = document.querySelectorAll(relatedProfilesSelector);
       let relatedProfiles = Array.from(accounts)
         .map(function (item) {
-          let fullNameElement = item?.querySelectorAll("span > div")[0];
+          let fullNameElement = item?.querySelectorAll("div > span > span")[0];
 
           if (fullNameElement instanceof HTMLElement) {
             return {
@@ -299,6 +292,7 @@ async function parsePageData(page: any): Promise<any> {
     }
   }, profilePicSelector);
   data.profile_pic_url = profilePicUrl;
+
   data.data_source = "webpage";
 
   return data;

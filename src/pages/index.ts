@@ -12,6 +12,9 @@ import { zproxy } from "../environment/zproxy";
 import { scrapedLogging } from "../utils/scrapedLogger";
 import { ipConfig } from "../utils/ipConfig";
 
+const fs = require("fs");
+const path = require("path");
+
 const wrapperWebProfileInfo = (webProfileInfo: any): any => {
   let webInfo = webProfileInfo.data.user;
   if (webInfo) {
@@ -61,6 +64,18 @@ async function scrapeInstagramPublicPage(
     if (config.internal_usernames.includes(identifier.identifier)) continue;
 
     let page = await browser.newPage();
+
+    // Construct the path to cookies.json using process.cwd()
+    const cookiesFilePath = path.join(process.cwd(), "config", "cookies.json");
+
+    // Load cookies if the file exists
+    if (fs.existsSync(cookiesFilePath)) {
+      const cookies = JSON.parse(fs.readFileSync(cookiesFilePath, "utf8"));
+      await page.setCookie(...cookies);
+      console.log("// Cookies loaded successfully.");
+    } else {
+      console.log("// No cookies file found.");
+    }
 
     // Configure the navigation timeout & Interception request
     await page.setDefaultNavigationTimeout(config.timeout);

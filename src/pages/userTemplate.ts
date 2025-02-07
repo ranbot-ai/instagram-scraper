@@ -4,11 +4,12 @@ const metadataSelector = mainHeaderSectionSelector + " ul";
 const externalLinkSelector = mainHeaderSectionSelector + " a[target='_blank']";
 const usernameSelector = mainHeaderSectionSelector + " h2";
 const buttonsSelector = mainHeaderSectionSelector + " button";
-const verifiedSelector = mainHeaderSectionSelector + " span[title='Verified']";
-const biographySelector = mainHeaderSectionSelector + " ul ~ div > span ~ div";
-const relatedProfilesSelector = "section main div[role='presentation'] ul li";
-const relatedProfilesSeeAllSelector =
-  "section main > div > div > div > div > a[role='link'] div";
+const verifiedSelector =
+  mainHeaderSectionSelector + " svg[aria-label='Verified'] title";
+const biographySelector =
+  mainHeaderSectionSelector + " div > span > div > span";
+const relatedProfilesSelector =
+  mainHeaderSectionSelector + "div[role='presentation'] ul li";
 const postGroupSelector = "section main article > div > div > div";
 const postsSelector = "section main article > div > div > div > div";
 const profilePicSelector = "section main header img";
@@ -27,7 +28,6 @@ export {
   chevronButtonAriaLabel,
   biographySelector,
   relatedProfilesSelector,
-  relatedProfilesSeeAllSelector,
   postGroupSelector,
   postsSelector,
   profilePicSelector,

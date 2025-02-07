@@ -1,4 +1,4 @@
-# Instagram Scraper
+# Instagram Scraper | 2025 Active
 
 - Get Instagram profile from public webpages.
 
@@ -21,30 +21,40 @@
 ## Structure
 
 ```
-  build
-    └── index.js
-    └── ...
-  config
-    └── config.json
-    └── zproxy.json
-  src
-    └── api
-        ├── routes.ts
-    └── pages
-        ├── identifiers.ts
-        ├── index.ts
-        ├── parse.ts
-        ├── userTemplate.ts
-    └── environment
-        ├── config.ts
-        ├── zproxy.ts
-    └── utils
-        ├── index.ts
-        ├── ipConfig.ts
-        ├── scrapedLogger.ts
-    └── index.ts
-  types
-    └── index.d.ts
+➜  instagram-scraper git:(main) ✗ tree -I 'node_modules|build'
+.
+├── README.md
+├── config
+│   ├── config.json
+│   ├── cookies.json
+│   ├── zproxy.json
+│   └── zproxy.json.example
+├── log
+│   └── development.log
+├── nodemon.json
+├── package-lock.json
+├── package.json
+├── src
+│   ├── environment
+│   │   ├── config.ts
+│   │   └── zproxy.ts
+│   ├── index.ts
+│   ├── pages
+│   │   ├── identifiers.ts
+│   │   ├── index.ts
+│   │   ├── parser.ts
+│   │   └── userTemplate.ts
+│   ├── resources
+│   └── utils
+│       ├── index.ts
+│       ├── ipConfig.ts
+│       └── scrapedLogger.ts
+├── tsconfig.json
+├── types
+│   └── index.d.ts
+└── yarn.lock
+
+9 directories, 22 files
 ```
 
 - `build`: The latest generated javascript code.
@@ -72,10 +82,12 @@ npm run start
 
 Starts the app in production by first building the project with `npm run build`, and then executing the compiled JavaScript at `build/index.js`.
 
+## Export your Ins cookies and save them in config/cookies.json
+
 ## Usage Examples
 
 ```NodeJS
-env HEADLESS=false TEST_IDS=instagram,cristiano,kyliejenner node build/index.js
+env HEADLESS=false IDS=instagram,cristiano,kyliejenner node build/index.js
 ```
 
 ## Contributors
