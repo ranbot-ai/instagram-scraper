@@ -32,13 +32,18 @@ const fs = require("fs-extra");
     " --single-process",
   ];
 
+  const headless =
+    process.env.HEADLESS != null
+      ? process.env.HEADLESS === "true"
+      : config.headless;
+
   if (zproxy.enabled) {
     args.push(" --proxy-server=" + zproxy.host + ":" + zproxy.port);
     args.push(" --proxy-bypass-list=" + zproxy.bypass_domains.join(";"));
   }
 
   const browser = await puppeteer.launch({
-    headless: config.headless,
+    headless: headless,
     args: args,
   });
 

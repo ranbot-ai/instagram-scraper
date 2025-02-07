@@ -75,9 +75,9 @@ Starts the app in production by first building the project with `npm run build`,
 ## Usage Examples
 
 ```NodeJS
-env TEST_IDS=instagram,cristiano,kyliejenner node build/index.js
+env HEADLESS=false TEST_IDS=instagram,cristiano,kyliejenner node build/index.js
 ```
 
 ## Contributors
 
-- Encore
+- [Encore Shao](https://github.com/encoreshao)

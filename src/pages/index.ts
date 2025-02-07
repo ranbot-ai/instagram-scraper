@@ -55,7 +55,7 @@ async function scrapeInstagramPublicPage(
     let queueItem: IQueueItem = queue.shift() as IQueueItem;
     console.log(queueItem);
     let identifier = queueItem.identifier;
-    console.log(`Cache Size: ${Object.keys(cache).length}`);
+    console.log(`// Cache length: ${Object.keys(cache).length}`);
 
     // If the identifier in skipped items (explore, business)
     if (config.internal_usernames.includes(identifier.identifier)) continue;
@@ -196,6 +196,9 @@ async function scrapeInstagramPublicPage(
     const currentURL = await page.evaluate(() =>
       decodeURIComponent(document.location.href)
     );
+
+    console.info("// Visiting URL: ", currentURL);
+
     // Redirect to the login page
     if (currentURL.match(/accounts\/login\//)) {
       const response: string = await ipConfig(page);
@@ -242,8 +245,8 @@ async function scrapeInstagramPublicPage(
       let messages = [
         `Identifier: ${identifier.identifier}`,
         `Source: ${data.data_source}`,
-        `Not Found: (${data.not_found})`,
-        `Cache Size: ${Object.keys(cache).length}`,
+        `Not found: (${data.not_found})`,
+        `Cache length: ${Object.keys(cache).length}`,
       ].join(", ");
 
       scrapedLogging(`// ${messages}`);
