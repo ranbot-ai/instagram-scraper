@@ -6,7 +6,7 @@
   "headless": true,
   "devtools": false,
   "timeout": 120000,
-  "ignore_resource_types": ["image", "stylesheet", "media", "font", "manifest"],
+  "ignore_resource_types": ["stylesheet", "media", "font", "manifest"],
   "concurrency": 10,
   "max_tries": 2,
   "automatically_detect_shared_data": true,
